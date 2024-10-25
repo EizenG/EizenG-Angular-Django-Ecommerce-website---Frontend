@@ -1,0 +1,68 @@
+<main #main>
+    <div id = "userMessage" #userMessage></div>
+    <div [class.hide401Error] = "isAuthenticated">
+    <div class="container">
+        <div class="header">
+            <h1>401</h1>
+            <h3>Accès non autorisé !</h3>
+        </div>
+        <img src="../../assets/images/bg.jpg" alt="not found" />
+        <div class="footer">
+            <p>
+                Nous sommes désolés, vous n'êtes pas autorisé à accéder à cette page. Veuillez vous connecter pour
+                continuer.
+            </p>
+            <button routerLink="/signInRegister/signIn/" id="button">SE CONNECTER</button>
+        </div>
+    </div>
+    </div>
+    <div class="conteneur" [class.hide401Error] = "!isAuthenticated">
+        <div class="panier">
+            <h2>Panier</h2>
+            <div id = "panier_grid">
+                <h5>PRODUITS</h5>
+                <h5>PRIX</h5>
+                <h5>QUANTITE</h5>
+                <h5>TOTAL</h5>
+                
+                @for(product of panierProducts; track product['asin']){
+                    <div class="produit {{ product['asin'] }}" #produit>
+                        <img (click)="removeProduct(product['asin'])" class="croix" src="../../assets/images/icons8-cancel-32.png" alt="cancel">
+                        <img class="imgarticle" [ngSrc]="product['image_link']" width="50" height="40" alt="tv intelligent">
+                        <p class="descpt">{{ product['title'] | slice:0:50 }}...</p>
+                    </div>
+                    <span class="prix">{{product['price']}} <span>$</span></span>
+                    <div class="compteur" #compteur><img (click)="moins(quantity,compteur)" class = "moins" src="../../assets/images/icons8-subtract-24.png" alt="moins"> <span #quantity>{{ product['quantity'] }}</span> <img (click)="plus(quantity,compteur)" class = "plus" src="../../assets/images/icons8-plus-24.png" alt="plus"></div>
+                    <span class="totalEachProduct" #productTotalPrice>{{ product['price'] * product['quantity'] }} <span>$</span></span>
+                }        
+                    
+            </div>
+            
+        <div class="one">
+                <button (click)="goToHome()" id = "home_btn" type = "button"><img src="../../assets/images/icons8-left-24.png" alt="fleche gauche">ACCEUIL</button>
+                <button (click)="validateOrder()" type = "button">VALIDER</button>
+            </div>
+        </div>
+
+        <div class="totaux">
+            <h2>Totaux</h2>
+            <div class="tot">
+                <span>total</span>
+                <span id = "total">{{ AllProducttotal }} <span>$</span></span>
+            </div>
+            <div class="tot">
+                <span>frais</span>
+                <span id="frais">{{ frais }} <span>$</span></span>
+            </div>
+            <div class="tot">
+                <span>taxe</span>
+                <span id ="taxe">{{ taxe }} <span>$</span></span>
+            </div>
+            <hr>
+            <div class="total1">
+                <span>Total</span>
+                <span id = "priceWithAllcharge" #priceWithAllCharge>{{ totalWithAllCharge }} <span>$</span></span>
+            </div>
+        </div>
+    </div>
+</main>

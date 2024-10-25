@@ -1,0 +1,142 @@
+<main #main>
+  <div id="userMessage" #userMessage></div>
+  <div [class.hide401Error]="userData['email']">
+    <div class="container">
+      <div class="header">
+        <h1>401</h1>
+        <h3>Accès non autorisé !</h3>
+      </div>
+      <img src="../../assets/images/bg.jpg" alt="not found" />
+      <div class="footer">
+        <p>
+          Nous sommes désolés, vous n'êtes pas autorisé à accéder à cette page. Veuillez vous connecter pour continuer.
+        </p>
+        <button routerLink="/signInRegister/signIn/" id="button">SE CONNECTER</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="conteneur" [class.hide401Error]="!userData['email']">
+    <div id="successMsg" #successMsg></div>
+    <div id="errorMsg" #errorMsg></div>
+    <div class="setting">
+      <h2 class="para">PARAMÈTRE DU COMPTE</h2>
+      <form class="form-para" [formGroup]="userForm" (ngSubmit)="saveUpdate()">
+        <div class="cercle">
+          @if(userData['profileImage']){
+          <img src="http://127.0.0.1:8000/{{ userData['profileImage'] }}" alt="photo profile de l'utilisateur">
+          }
+          <label for="id_profileImage">UserImage</label>
+          <input (change)="onFileChange($event)" formControlName = "profileImage" type="file" name="profileImage" accept="image/*" id="id_profileImage">
+        </div>
+        <div class="form1">
+          <div class="nom-email">
+            <div>
+              <label for="nom">Nom utilisateur</label><br>
+              <input #username [class.invalid] = "userForm.get('username')?.invalid && (userForm.get('username')?.touched || userForm.get('username')?.dirty)" formControlName="username" name="username" type="text" id="nom" placeholder="{{ userData['username'] ? userData['username'] : 'champ vide !!!' }}">
+
+            </div>
+            <div>
+              <label for="email">E-mail</label><br>
+              <input #email [class.invalid] = "userForm.get('email')?.invalid && (userForm.get('email')?.touched || userForm.get('email')?.dirty)" formControlName="email" name="email" type="email" id="email" placeholder="{{ userData['email'] }}">
+            </div>
+              <div *ngIf="username.classList.contains('invalid')" class="invalidmsg">
+                Le nom d'utilisateur doit avoir entre 3 et 10 caracteres.
+              </div>
+              <div *ngIf="email.classList.contains('invalid')" class="invalidmsg">
+                L'addresse email entree est incorrecte.
+              </div>
+          </div>
+          <div class="email-num">
+            <div>
+              <label for="email sec">Email secondaire</label><br>
+              <input #secondMail [class.invalid] = "userForm.get('secondEmail')?.invalid && (userForm.get('secondEmail')?.touched || userForm.get('secondEmail')?.dirty)" formControlName="secondEmail" name="secondEmail" type="email" id="email_sec"
+                placeholder="{{ userData['secondEmail'] ? userData['secondEmail'] : 'champ vide !!!' }}">
+            </div>
+            <div>
+              <label for="num">Numéro de téléphone</label><br>
+              <input formControlName="tel" name="tel" type="number" id="num" placeholder="{{ userData['tel'] ? userData['tel'] : 'champ vide !!!' }}">
+            </div>
+            <div *ngIf="secondMail.classList.contains('invalid')" class="invalidmsg">
+              L'addresse email entree est incorrecte.
+            </div>
+          </div>
+          <div class="adresse">
+            <label for="add">Adresse</label><br>
+            <input formControlName="address" name="address" type="text" id="add" placeholder="{{ userData['address'] ? userData['address'] : 'champ vide !!!' }}">
+          </div>
+          <div class="location">
+            <div class="pays">
+              <label for="country">Pays</label><br>
+              <select formControlName="country" (change)="updateRegionSelectElt($event)" id="country" name="country">
+                <option [selected]="!userData['country']" disabled value="">-- Choisis un pays --</option>
+                <option *ngFor="let country of westAfricanCountriesWithRegions" [value]="country['countryShortCode']"
+                  [selected]="userData['country'] ? country['countryShortCode'] === userData['country'] : false">
+                  {{ country['countryName'] }}
+                </option>
+              </select>
+            </div>
+            <div class="region">
+              <label for="region">Région</label><br>
+              <select formControlName="region" name="region" id="region" #regionSelectElt>
+                <option *ngIf="!userData['country']" disabled selected value=""> -- Choisis une region -- </option>
+                <ng-container *ngIf="userData['country']">
+                  <option disabled value=""> -- Choisis une region -- </option>
+                  <option *ngFor="let region of getCountryRegion(userData['country']) " [selected]="region['shortCode'] === userData['region']" [value]="region['shortCode']">{{ region['name'] }}
+                  </option>
+                </ng-container>
+              </select>
+            </div>
+            <div class="cp">
+              <label for="cp">Code Postal</label><br>
+              <input formControlName="zipCode" name="zipCode" type="number" id="cp" placeholder="{{ userData['zipCode'] ? userData['zipCode'] : 'champ vide !!!' }}">
+            </div>
+          </div>
+          <button [disabled]="userForm.invalid || userForm.untouched || userForm.pristine" [ngStyle] = "(userForm.valid && userForm.touched && userForm.dirty)?{'cursor':'pointer','background-color':'#fa8232'}:{'cursor':'not-allowed','background-color':'#fa8232a8'}" type="submit">SAUVEGARDER LES MODIFICATIONS</button>
+        </div>
+      </form>
+    </div>
+    <div class="mdp">
+      <h2 class="changer">CHANGER LE MOT DE PASSE</h2>
+      <form [formGroup]="changePasswordForm" class="form2" (ngSubmit)="changePassword()">
+        <div #successMsg2></div>
+        <div #errorMsg2></div>
+        <div>
+          <label for="mdp-actuel">Mot de passe actuel</label>
+          <div [class.invalid] = "changePasswordForm.get('oldPassword')?.invalid && (changePasswordForm.get('oldPassword')?.touched || changePasswordForm.get('oldPassword')?.dirty) " class="passwordInput">
+            <input formControlName="oldPassword" required maxLength="30" type="password" name="mdp-actuel" id="mdp-actuel">
+            <img (click)="showOrHidePassword($event)" src="../../assets/images/eye-regular.svg" alt="eye slash icon">
+          </div>
+          <div *ngIf="this.changePasswordForm.get('oldPassword')?.invalid && (this.changePasswordForm.get('oldPassword')?.touched || this.changePasswordForm.get('oldPassword')?.dirty)" class="alert alert-danger changePasswordErrorDiv" role="alert">
+            <strong>Le mot de passe doit faire minimun 8 caracteres!</strong>
+          </div>
+        </div>
+        <div>
+          <label for="mdp-new">Nouveau mot de passe</label>
+          <div [class.invalid] = "changePasswordForm.get('newPassword')?.invalid && (changePasswordForm.get('newPassword')?.touched || changePasswordForm.get('newPassword')?.dirty) "  class="passwordInput">
+            <input formControlName="newPassword" required maxLength="30" type="password" name="mdp-new" id="mdp-new">
+            <img (click)="showOrHidePassword($event)" src="../../assets/images/eye-regular.svg" alt="eye slash icon">
+          </div>
+          <div
+            *ngIf="this.changePasswordForm.get('newPassword')?.invalid && (this.changePasswordForm.get('newPassword')?.touched || this.changePasswordForm.get('newPassword')?.dirty)"
+            class="alert alert-danger changePasswordErrorDiv" role="alert">
+            <strong>Le mot de passe doit faire minimun 8 caracteres!</strong>
+          </div>
+        </div>
+        <div>
+          <label for="mdp-actuel">Confirmer le mot de passe</label>
+          <div [class.invalid] = "changePasswordForm.get('newPasswordConfirmation')?.invalid && (changePasswordForm.get('newPasswordConfirmation')?.touched || changePasswordForm.get('newPasswordConfirmation')?.dirty) " class="passwordInput">
+            <input formControlName="newPasswordConfirmation" required maxLength="30" name="mdp-new-confirm" type="password" id="mdp-new-confirm">
+            <img (click)="showOrHidePassword($event)" src="../../assets/images/eye-regular.svg" alt="eye slash icon">
+          </div>
+          <div
+            *ngIf="this.changePasswordForm.get('newPasswordConfirmation')?.invalid && (this.changePasswordForm.get('newPasswordConfirmation')?.touched || this.changePasswordForm.get('newPasswordConfirmation')?.dirty)"
+            class="alert alert-danger changePasswordErrorDiv" role="alert">
+            <strong>Le mot de passe doit faire minimun 8 caracteres!</strong>
+          </div>
+        </div>
+        <button [disabled]="changePasswordForm.invalid" [ngStyle] = "(changePasswordForm.valid && changePasswordForm.touched && changePasswordForm.dirty)?{'cursor':'pointer','background-color':'#fa8232'}:{'cursor':'not-allowed','background-color':'#fa8232a8'}" type="submit">CHANGER LE MOT DE PASSE</button>
+      </form>
+    </div>
+  </div>
+</main>

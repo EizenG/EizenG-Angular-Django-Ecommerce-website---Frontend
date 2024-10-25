@@ -1,0 +1,23 @@
+<!-- Formulaire de connexion-->
+<form [formGroup]="signInForm">
+    <div *ngIf = "hasLoginError" class="alert alert-danger" role="alert">
+        <strong>Mail ou mot de passe incorrect!</strong>
+    </div>
+    <div *ngIf = "unauthorizedError" class="alert alert-danger" role="alert">
+        <strong>Acces non autorise! Veuillez vous connecter.</strong>
+    </div>
+    <div>
+        <label for="emailInput">Email</label>
+        <input formControlName ="email" type="email" name="email" id="emailInput"
+        [class.invalid] = "signInForm.get('email')?.invalid && (signInForm.get('email')?.touched || signInForm.get('email')?.dirty)">
+    </div>
+    <div>
+        <label for="password1">Mot de passe</label>
+        <div class = "passwordInput">
+            <input formControlName = "password" maxlength="30" type="password" name="password" id="password1" 
+            [class.invalid] = "signInForm.get('password')?.invalid && (signInForm.get('password')?.touched || signInForm.get('password')?.dirty)" #passwordInput>
+            <img src="../../../assets/images/eye-regular.svg" alt="eye slash icon" #eyeBtn (click)="showOrHidePassword()">
+        </div>
+    </div>
+    <button [ngStyle] = "signInForm.valid?{'cursor':'pointer','background-color':'#fa8232'}:{'cursor':'not-allowed','background-color':'#fa8232a8'}" (click)="submit()">CONNEXION <img src="../../../assets/images/rightArrow.svg" alt="icon fleche"></button>
+</form>

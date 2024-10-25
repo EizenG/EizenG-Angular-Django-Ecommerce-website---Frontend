@@ -1,0 +1,7 @@
+.invalid{
+    border: 1px solid red!important;
+}
+
+.error{
+    margin-bottom: 0!important;
+}

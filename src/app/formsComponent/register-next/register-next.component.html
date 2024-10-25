@@ -1,0 +1,33 @@
+<div id="alert" #alertContainer></div>
+<form [formGroup] = "registerNextForm">
+    <div>
+        <label for="password1">Mot de passe</label>
+        <div class = "passwordInput">
+            <input formControlName = "password1" type="password" name="password1" id="password1" #passwordInput1
+            [class.invalid] = "passwordError('1')">
+            <img src="../../../assets/images/eye-regular.svg" alt="eye slash icon" (click)="showOrHidePassword($event)">
+        </div>
+        <div *ngIf = "passwordError('1')" class="alert alert-danger" role="alert">
+                <strong>Le mot de passe doit faire minimun 8 caracteres!</strong>
+        </div>
+    </div>
+    <div>
+        <label for="password2">Confirmer le mot de passe {{ registerNextForm.get("password2")?.getError("minLength")}}</label>
+        <div class = "passwordInput">
+            <input formControlName = "password2" type="password" name="password2" id="password2" #passwordInput2
+            [class.invalid] = "passwordError('2')">
+            <img src="../../../assets/images/eye-regular.svg" alt="eye slash icon" (click)="showOrHidePassword($event)">
+        </div>
+        <div *ngIf = "passwordError('2')" class="alert alert-danger" role="alert">
+            <strong>Le mot de passe doit faire minimun 8 caracteres!</strong>
+        </div>
+    </div>
+    <div id = "checkRuleDiv">
+        <label class = "container" for="useRule">
+            <input (change)="ruleInputChecked = !ruleInputChecked" type="checkbox" name="useRule" id="useRule">
+            <span class = "checkmark"></span>
+            Êtes-vous d'accord avec les conditions d'utilisation 
+            et la politique de confidentialité ?.</label>
+    </div>
+    <button (click) = "register()" [ngStyle] = "ruleInputChecked?{'cursor':'pointer','background-color':'#fa8232'}:{'cursor':'not-allowed','background-color':'#fa8232a8'}"  [disabled] = "!ruleInputChecked" id = "btn_register" type="button">s'inscrire <img src="../../../assets/images/rightArrow.svg" alt="icon fleche"></button>
+</form>

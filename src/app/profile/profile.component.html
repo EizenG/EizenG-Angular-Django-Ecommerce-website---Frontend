@@ -1,0 +1,47 @@
+<div class="conteneur">
+  <div class="info">
+    <div class="info1">INFOCOMPTE</div>
+    <div class="info2">
+      <div class="info3">
+        <div class="cercle">
+          <img *ngIf="userData['profileImage']" [src]="userData['profileImage'] ? 'http://127.0.0.1:8000/' + userData['profileImage'] : '../../assets/images/profile.svg'" alt="photo profile de l'utilisateur">
+        </div>
+        <div>
+          <p class="nom">{{ userData['username'] || "Unknow username..."}}</p>
+          <p class="add">{{ country || "Unknow country"}},{{
+            region || "Unknow city" }}</p>
+        </div>
+      </div>
+      <p class="info4"><span>E-mail: </span> <span>{{ userData['email'] }}</span></p>
+      <p class="info4"><span>numéro de téléphone: </span> <span>{{ userData['tel'] || "Tel non defini"
+          }}</span></p>
+      <p class="info4"><span>addresse: </span> <br> <span>{{ userData['address'] || "Address non defini"
+          }}</span></p>
+    </div>
+    <button class="modifier"><a routerLink = "/user/params"></a>MODIFIER LE COMPTE</button>
+  </div>
+
+  <div class="commandes">
+    <div class="commandea">
+      <img src="../../assets/images/fusee1.svg" alt="image commande">
+      <div class="commande1">
+        <p class="nbre">154</p>
+        <p class="descpt">commandes totales</p>
+      </div>
+    </div>
+    <div class="commandeb">
+      <img src="../../assets/images/papier.svg" alt="image commande">
+      <div class="commande1">
+        <p class="nbre">05</p>
+        <p class="descpt">commandes en attente</p>
+      </div>
+    </div>
+    <div class="commandec">
+      <img src="../../assets/images/box1.svg" alt="image commande">
+      <div class="commande1">
+        <p class="nbre">149</p>
+        <p class="descpt">commandes terminées</p>
+      </div>
+    </div>
+  </div>
+</div>

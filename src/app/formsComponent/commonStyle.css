@@ -1,0 +1,72 @@
+input,.passwordInput{
+    height: 40px;
+}
+
+input{
+    padding: 0 10px;
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid #E4E7E9!important;
+}
+
+input:focus{
+    outline: none;
+}
+
+form:last-child{
+    padding: 20px 20px 150px;
+}
+
+form:nth-child(2){
+    padding: 20px 20px 100px;
+}
+
+form > div{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    margin-bottom: 16px;
+}
+
+button{
+    /* position: relative; */
+    height: 40px;
+    width: 100%;
+    margin: 40px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+    background-color: var(--orangeVariant);
+    border: none;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* Disable default see or hide password icon, include by microsoft edge*/
+::-ms-reveal {
+    display: none;
+}
+
+.passwordInput img{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    right: 0;
+}
+
+.passwordInput{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.passwordInput input{
+    height: 100%;
+    border: none;
+    flex-grow: 1;
+}

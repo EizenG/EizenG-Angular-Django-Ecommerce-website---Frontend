@@ -1,0 +1,117 @@
+<header>
+    <div id="headertop">
+        <p>Bienvenue dans la boutique de commerce électronique en ligne DIC1 shop.</p>
+        <div>
+            <address>
+                Suivez-nous:
+                <div>
+                    <a href="#"><img src="../../assets/images/twitter.svg" alt="logo twitter"></a>
+                    <a href="#"><img src="../../assets/images/faceb.svg" alt="logo facebook"></a>
+                    <a href="#"><img src="../../assets/images/pinterest.svg" alt="logo pinterest"></a>
+                    <a href="#"><img src="../../assets/images/reddit.svg" alt="logo reddit"></a>
+                    <a href="#"><img src="../../assets/images/ytb.svg" alt="logo youtube"></a>
+                    <a href="#"><img src="../../assets/images/insta.svg" alt="logo instagram"></a>
+                </div>
+            </address>
+            <div>
+                <div class="select-container" #selectContainer>
+                    <span class="selected">Fra</span>
+                    <div class="select-dropdown hidden" #selectDropdown>
+                        <span class="option fr">Fra</span>
+                        <span class="option en">Eng</span>
+                    </div>
+                    <div class="select-icon">
+                        <img src="../../assets/images/chevron-down.svg" alt="logo chevron down">
+                    </div>
+                </div>
+                <div class="select-container" #selectContainer>
+                    <span class="selected">En USD</span>
+                    <div class="select-dropdown hidden" #selectDropdown>
+                        <span class="option usd">En USD</span>
+                        <span class="option eur">En EUR</span>
+                    </div>
+                    <div class="select-icon">
+                        <img src="../../assets/images/chevron-down.svg" alt="logo chevron down">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="headermiddle">
+        <div>
+            <img src="../../assets/images/logoWhite.svg" alt="dic1 shop logo">
+            <h1>Boutique de DIC1</h1>
+        </div>
+
+        <form *ngIf = "isSearchBar" role="search">
+            <input (ngModelChange)="emitSearchTerm($event)" [(ngModel)] = "search" name="searchInput" type="text" placeholder="Recherchez un produit..." aria-label="Search">
+            <button type="button">
+                <img src="../../assets/images/searchIcon.svg" alt="search icon">
+            </button>
+        </form>
+        <div>
+            <a routerLink="/user/panier/"><img src="../../assets/images/cart-shop.svg" alt="icon of cart-shopping"></a>
+
+            <div *ngIf="isAuthenticated" id="profileDiv">
+                <img (click)="showOrHideUserNavCard()" data-user-profileIcon [src]="userData['profileImage'] ? 'http://127.0.0.1:8000/' + userData['profileImage'] : '../../assets/images/profile.svg'" alt="logo profile" [ngStyle]="userData['profileImage'] ? {'height':40 + 'px','width':40 + 'px','clip-path':'circle(50% at 50% 50%)'} : {}" #logoProfile >
+                <div #userNavCard class="hideUserNavCard userNavigationCard">
+
+                    <h2 *ngIf="userData['username']">Bienvenue {{ userData["username"] }}</h2>
+                    <h2 *ngIf="!userData['username']">Bienvenue...</h2>
+                    
+                    <div class="wrapper">
+                        <a href="#"routerLink="/user/params/" class="customButton customButtonOne">Paramètre</a>
+                    </div>
+                    <div class="wrapper wrapperV2">
+                        <a routerLink="/user/profile" class="customButton customButtonOne">Profile</a>
+                    </div>
+                    <div class="wrapper wrapperV2">
+                        <a (click)="disconnect()" class="customButton customButtonOne">Se déconnecter !</a>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="!isAuthenticated" id="profileDiv">
+                <img (click)="showOrHideUserNavCard()" data-user-profileIcon src="../../assets/images/profile.svg" alt="logo profile" #logoProfile>
+                <div #userNavCard class="hideUserNavCard userNavigationCard">
+                    <h2>Connexion ou Inscription</h2>
+                    <div class="wrapper">
+                        <a routerLink = "/signInRegister/signIn" class="customButton customButtonOne">Hey click moi !</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <nav id="headerbottom" #headerbottom>
+        <img src="../../assets/images/home.svg" alt="logo home">
+        <a routerLink="/">Accueil.</a>
+        <ng-container *ngIf="headerBottomInnerHtml == 1">
+           <span style="color: #5F6C72;">></span> <a routerLink="/user/panier" style="color: #2DA5F3;">panier</a>
+        </ng-container>
+        <ng-container *ngIf="headerBottomInnerHtml == 2">
+            <span style="color: #5F6C72;">></span> <span style="color:#2DA5F3;font-size:14px;">produit</span>
+        </ng-container>
+        <ng-container *ngIf="headerBottomInnerHtml == 3">
+            <span style="color: #5F6C72;">></span> <span style="color:#2DA5F3;font-size:14px;">Connexion</span>
+        </ng-container>
+        <ng-container *ngIf="headerBottomInnerHtml == 4">
+            <span style="color: #5F6C72;">></span> <span style="color:#2DA5F3;font-size:14px;">Inscription</span>
+        </ng-container>
+        <ng-container *ngIf="headerBottomInnerHtml == 5">
+            <span style="color: #5F6C72;">></span> 
+            <a routerLink="/user/panier" style="color: #2DA5F3;">panier</a>
+            <span style="color: #5F6C72;">></span>
+            <span style="color:#2DA5F3;font-size:14px;">valideur</span>
+        </ng-container>
+        <ng-container *ngIf="headerBottomInnerHtml == 6">
+            <span style="color: #5F6C72;">></span>
+            <span style="color:#2DA5F3;font-size:14px;">profile utilisateur</span>
+        </ng-container>
+        <ng-container *ngIf="headerBottomInnerHtml == 7">
+            <span style="color: #5F6C72;">></span>
+            <span style="color:#2DA5F3;font-size:14px;">parametres du compte</span>
+        </ng-container>
+    </nav>
+</header>

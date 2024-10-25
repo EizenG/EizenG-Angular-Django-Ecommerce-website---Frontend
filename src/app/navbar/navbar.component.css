@@ -1,0 +1,329 @@
+/* Header */
+header{
+    background-color: var(--app-blue);
+    color: white;
+}
+
+#headertop, #headerbottom{
+    margin: auto;
+    padding: 0 8vw;
+}
+
+#headertop{
+    min-height: 52px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px 30px;
+    align-items: center;
+    font-size: 14px;
+    box-shadow: 0 -1px 0 rgba(255,255,255,0.16) inset;
+}
+
+#headertop > div{
+    display: flex;
+    height: 28px;
+}
+
+#headertop > div address{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-right: 18px;
+    box-shadow: -1px 0 0 rgba(255,255,255,0.16) inset;
+   
+}
+
+#headertop > div address div{
+    display: flex;
+    gap: 12px;
+}
+
+#headertop > div > div{
+    padding-left: 18px;
+    display: flex;
+    gap: 12px;
+    justify-items: center;
+}
+.select-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-width: 45px;
+    height: 28px;
+    padding-right: 18px;
+    cursor: pointer;
+}
+
+.select-dropdown{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 100;
+    top: 32px;
+    min-width: 45px;
+    background-color: var(--app-blue);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.select-dropdown span{
+    height: 20px;
+    padding: 0 10px 0 3px;
+}
+.selected{
+    width: max-content;
+}
+.select-dropdown span:hover{
+    background-color: white;
+    color: var(--app-blue);
+}
+.select-icon{
+    position: absolute;
+    top : 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.select-container img{
+    height: 12px;
+    width: 12px;
+}
+.hidden{
+    display:none!important;
+}
+
+#headertop > div address a{
+    height: 14px;
+}
+
+#headermiddle{
+    min-height: 65px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap : wrap-reverse;
+    gap: 15px 20px;
+    padding: 10px 8vw;
+}
+
+#headermiddle > div:first-child{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#profileDiv{
+    position: relative;
+}
+
+#profileDiv img{
+    height: 23px;
+    width: 23px;
+    cursor: pointer;
+}
+
+#profileDiv h2{
+    font-size: 20px;
+    text-align: center;
+}
+
+#profileDiv a{
+    text-decoration: none;
+    color : white;
+}
+/* click me button style */
+.wrapper{
+    position: relative;
+    width: 140px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a.customButton.customButtonOne:before, a.customButton.customButtonOne:after{
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    transition: all 0.3s ease;
+  }
+  a.customButton.customButtonOne:before{
+    top: -2.5%;
+    left: -1%;
+    border-top: 2px solid white;
+    border-left: 2px solid white; 
+  }
+  a.customButton.customButtonOne:after{
+    bottom: -2.5%;
+    right: -1%;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+  }
+  a.customButton.customButtonOne:hover:before, a.customButton.customButtonOne:hover:after{
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+  }
+  
+
+#profileDiv > div{
+    background-color: var(--app-blue);
+    border-radius: 4px;
+    position: absolute;
+    z-index: 100;
+    top : 50px;
+    left: -190px;
+    min-width: 220px;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(0px);
+    transition: transform 0.5s linear 0.5s;
+    box-shadow: -15px -8px 15px rgba(255, 255, 255, 0.2), 15px 15px 15px rgba(0, 0, 0, 0.1),
+    -5px -5px 5px rgba(255, 255, 255, 0.2) inset, 5px 5px 5px rgba(
+        0,
+        0,
+        0,
+        0.1
+      ) inset;
+}
+
+#headermiddle form{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#headermiddle form input{
+    height: 40px;
+    width: min(600px,40vw);
+    min-width: 300px;
+    padding: 0 50px 0 20px;
+    border-radius: 2px;
+    color:#77878F;
+    font-size: 14px;
+    border: none;
+}
+
+#headermiddle form input:focus{
+    outline: none;
+}
+
+#headermiddle form button{
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    right: 20px;
+    cursor: pointer;
+}
+
+#headermiddle > div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+#headerbottom{
+    background-color: #F2F4F5;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 50px;
+}
+
+#headerbottom img{
+    width: 20px;
+    height: 20px;
+}
+#headerbottom a{
+    font-size: 14px;
+    text-decoration: none;
+    color: #5F6C72;
+}
+
+/* class for hiding some elements if necessary through js */
+
+.hideUserNavCard{
+    visibility: hidden!important;
+    transform: translateY(10px)!important;
+}
+
+/*Media QUERIES */
+@media screen and (max-width : 964px) {
+    #profileDiv > div{
+        top: 40px;
+        left: -53px;
+        
+    }
+}
+
+@media screen and (max-width:903px){
+    #headertop{
+        flex-direction: column;
+        padding: 10px!important;
+    }
+
+    #headertop p{
+        text-align: center;
+    }
+}
+
+@media screen and (max-width : 782px){
+    #profileDiv > div{
+        top: 45px;
+        left: -185px;
+    }
+
+    #headertop > div{
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width:583px){
+    #headerbottom{
+        padding: 0 2vw;
+    }
+
+    #headermiddle{
+        padding: 10px 2vw;
+    }
+    #headermiddle div:last-child{
+        gap: 15px;
+    }
+
+    #profileDiv > div{
+        left: -196px;
+    }
+}
+
+@media screen and (max-width:430px){
+    #headertop > div address{
+        flex-direction: column;
+    }
+    #headertop > div{
+        height: max-content;
+        align-items: center;
+    }
+    #headertop{
+        padding: 10px 10px 30px;
+    }
+
+    #headertop > div address div{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width : 403px) {
+    #profileDiv > div{
+        top: 36px;
+        left: -45px;
+    }
+}
+

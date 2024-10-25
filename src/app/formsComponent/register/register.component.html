@@ -1,0 +1,32 @@
+<!--Formulaire d'inscription -->
+<form [formGroup] = "registerForm">
+        <ng-container *ngIf = "errorMessage?.[0]">
+            <div  *ngFor="let msg of errorMessage" class="alert alert-danger" role="alert">
+                <strong>{{ msg }}</strong>
+            </div>
+        </ng-container>
+        <div>
+            <label for="first_nameInput">Prénom</label>
+            <input maxlength="50" formControlName = "firstName" type="text" name="first_name" id="first_nameInput" 
+            [class.invalid] = "registerForm.get('firstName')?.invalid && (registerForm.get('firstName')?.touched || registerForm.get('firstName')?.dirty)">
+        </div>
+        <div>
+            <label for="last_nameInput">Nom</label>
+            <input maxlength="50" formControlName = "lastName" type="text" name="last_name" id="last_nameInput"
+            [class.invalid] = "registerForm.get('lastName')?.invalid && (registerForm.get('lastName')?.touched || registerForm.get('lastName')?.dirty)">
+        </div>
+        <div>
+            <label for="birth_dateInput">Date de naissance</label>
+            <input formControlName = "birthDate" type="date" name="birth_date" id="birth_dateInput"
+            [class.invalid] = "registerForm.get('birthDate')?.invalid && (registerForm.get('birthDate')?.touched || registerForm.get('birthDate')?.dirty)">
+        </div>
+        <div>
+            <label for="emailInput">Email</label>
+            <input formControlName = "email" type="email" name="email" id="emailInput"
+            [class.invalid] = "registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)">
+            <div *ngIf="registerForm.get('email')?.errors?.['email']" class="alert alert-danger error" role="alert">
+                <strong>Veuillez saisir un mail correct!</strong>
+            </div>
+        </div>
+        <button [ngStyle] = "registerForm.valid?{'cursor':'pointer','background-color':'#fa8232'}:{'cursor':'not-allowed','background-color':'#fa8232a8'}" [disabled]="registerForm.invalid" (click)="navigateToRegisterNext()" type = "button">Suivant <img src="../../../assets/images/rightArrow.svg" alt="icon fleche"></button>
+</form>

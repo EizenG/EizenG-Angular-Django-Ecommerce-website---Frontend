@@ -1,0 +1,9 @@
+<main>
+    <div id = 'formContainer'>
+        <div>
+            <h2 routerLink = "/signInRegister/signIn" [ngClass] = "{'currentForm':isLoginForm}">Connexion</h2>
+            <h2 routerLink = "/signInRegister/register" [ngClass] = "{'currentForm':!isLoginForm}">Inscription</h2>
+        </div> 
+        <router-outlet></router-outlet>
+    </div>
+</main>

@@ -1,0 +1,165 @@
+.conteneur {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  flex-wrap: wrap;
+}
+
+.cercle img {
+  width: 100%;
+  height: 100%;
+  clip-path: circle();
+}
+
+.modifier a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.info {
+  border: 1px solid #E4E7E9;
+  width: 312px;
+  height: 370px;
+  margin-right: 0.5em;
+  border-radius: 3px;
+}
+
+.info1 {
+  padding: 12px;
+  font-weight: 600;
+  font-size: 0.8em;
+  border-bottom: 1px solid #E4E7E9;
+  color: #191C1F;
+}
+
+.info2 {
+  margin-top: 10px;
+  height: 260px;
+}
+
+p span {
+  font-size: 0.8em;
+
+}
+
+.info3 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 15px;
+}
+
+.info3 div:last-child p {
+  margin: 5px 0;
+}
+
+.cercle {
+  background-color: grey;
+  width: 2.8em;
+  height: 2.8em;
+  clip-path: circle();
+}
+
+.nom {
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.add {
+  font-size: 0.82em;
+}
+
+.info4 {
+  margin: 20px 0 20px 15px;
+}
+
+.info4 span:first-child {
+  font-size: 14px;
+  color: #191C1F;
+}
+
+.info4 span:last-child {
+  font-size: 14px;
+  color: #5F6C72;
+}
+
+.modifier {
+  position: relative;
+  border: solid 2px rgb(123, 181, 244);
+  color: rgb(97, 167, 242);
+  padding: 0.75em;
+  font-weight: 600;
+  background-color: white;
+  font-size: 0.8em;
+  display: block;
+  margin: auto;
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+}
+
+.commandes {
+  width: 312px;
+  height: 312px;
+  margin-left: 0.5em;
+}
+
+img[alt="image commande"] {
+  width: 2.6em;
+}
+
+.commandea,
+.commandeb,
+.commandec {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0.65em;
+  margin-top: 0.94em;
+  border-radius: 3px;
+}
+
+.commandea {
+  background-color: #eaf6fe;
+
+}
+
+.commandeb {
+  background-color: #fff3eb;
+
+}
+
+.commandec {
+  background-color: #eaf7e9;
+}
+
+.commande1 {
+  margin-left: 0.6em;
+}
+
+.nbre {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.descpt {
+  font-size: 0.75em;
+}
+
+@media screen and (max-width:698px) {
+  .conteneur {
+    flex-direction: column;
+  }
+
+  .info {
+    margin-right: 0;
+  }
+
+  .commandes {
+    margin-left: 0;
+  }
+}

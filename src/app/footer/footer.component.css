@@ -1,0 +1,104 @@
+/* FOOTER */
+footer{
+    background-color: #191C1F;
+    color: white;
+}
+
+footer h3{
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+}
+
+footer ul{
+    list-style: none;
+}
+
+footer > div:last-child{
+    height: 50px;
+    box-shadow: 0px 1px 0px 0px var(--darkblue-variant) inset;
+}
+
+#footerTop{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding:55px 10px;
+}
+
+#footerTop > div:first-child > div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 8px;
+}
+#footerTop > div:first-child ul{
+    color: var(--gray-variant);
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none!;
+}
+#footerTop > div:first-child li{
+    margin-bottom: 12px;
+    line-height: 20px;
+}
+
+#footerTop > div:first-child span,#footerTop > div:first-child li:last-child,#footerTop > div:nth-child(2) li:nth-child(4){
+    color: white;
+}
+
+#footerTop > div:nth-child(2) a,#footerTop > div:nth-child(3) a, #footerTop > div:nth-child(2) li:nth-child(4){
+    color: var(--gray-variant);
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    text-decoration: none;
+    gap: 8px;
+    padding: 6px 0;
+}
+#footerTop > div:nth-child(2) li:last-child a{
+    color: #EBC80C;
+}
+
+#footerTop > div:nth-child(4) div{
+    background-color: var(--darkblue-variant);
+    width: 176px;
+    border-radius: 3px;
+    font-size: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+#footerTop > div:nth-child(4) span{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#footerTop > div:last-child{
+    max-width: 416px;
+}
+
+#footerTop > div:last-child div{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+#footerTop > div:last-child em{
+    padding: 6px 12px;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid var(--darkblue-variant);
+    cursor : pointer;
+}
+
+#footerTop > div:last-child em:hover{
+    background-color: var(--darkblue-variant);
+    border-color: white;
+}
+
+/*FIN FOOTER */
